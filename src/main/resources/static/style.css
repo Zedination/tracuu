@@ -15,3 +15,16 @@
     color: #d26a5c;
     display: block;
 }
+#main-container > div:nth-child(2){
+    font-size: 1.15rem;
+}
+#main-container > div:nth-child(2) span{
+    float: right;
+    color: green;
+}
+@media screen and (max-width: 768px){
+    #main-container > div:nth-child(2) > div{
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
