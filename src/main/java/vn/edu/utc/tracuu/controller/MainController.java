@@ -12,7 +12,7 @@ public class MainController {
     @GetMapping(path = {"/","/index"})
     public String getIndex(Model model){
         LocalDate today = LocalDate.now();
-        model.addAttribute("title","TRA CỨU KẾT QUẢ NHẬP HỌC HỆ ĐẠI HỌC CHÍNH QUY NĂM "+today.getYear());
+        model.addAttribute("title","ra cứu kết quả phân loại tiếng anh sinh viên hệ đại học chính quy khóa 61 năm "+today.getYear());
         return "index";
     }
 }
