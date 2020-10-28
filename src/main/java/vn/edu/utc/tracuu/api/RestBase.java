@@ -13,7 +13,7 @@ import java.util.Map;
 @RestController
 public class RestBase {
 
-    
+
     @PostMapping("/find")
     public ThiSinh findData(@RequestParam("q") String q){
         ThiSinh thiSinh = (ThiSinh) StaticData.dataMaps.get(q);

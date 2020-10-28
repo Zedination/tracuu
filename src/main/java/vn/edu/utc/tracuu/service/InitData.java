@@ -19,7 +19,7 @@ public class InitData {
 
     @PostConstruct
     public void initData() throws IOException {
-        String pathFile = "src/main/resources/data.xlsx";
+        String pathFile = "src/main/resources/k61.xlsx";
         InputStream inputStream = new FileInputStream(new File(pathFile));
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheetAt(0);
@@ -27,36 +27,36 @@ public class InitData {
             Row row = sheet.getRow(i);
             ThiSinh thiSinh = new ThiSinh();
             thiSinh.setMaSinhVien(row.getCell(1).toString());
-            thiSinh.setSoBaoDanh(row.getCell(2).getStringCellValue());
-            thiSinh.setHoTen(row.getCell(3).getStringCellValue());
-            thiSinh.setNgaySinh(row.getCell(4).getStringCellValue());
+            thiSinh.setToeic(row.getCell(9).toString());
+            thiSinh.setHoTen(row.getCell(2).getStringCellValue());
+            thiSinh.setNgaySinh(row.getCell(3).getStringCellValue());
             try {
-                thiSinh.setMaDeNghe(row.getCell(5).getStringCellValue());
+                thiSinh.setMaDeNghe(row.getCell(4).getStringCellValue());
             }catch (Exception e){
                 thiSinh.setMaDeNghe("N/A");
             }
             try {
-                thiSinh.setDiemNghe(String.valueOf(row.getCell(6).getNumericCellValue()));
+                thiSinh.setDiemNghe(row.getCell(5).toString());
             }catch (Exception e){
                 thiSinh.setDiemNghe("N/A");
             }
             try {
-                thiSinh.setMaDeDoc(row.getCell(7).getStringCellValue());
+                thiSinh.setMaDeDoc(row.getCell(6).toString());
             }catch (Exception e){
                 thiSinh.setMaDeDoc("N/A");
             }
             try{
-                thiSinh.setDiemDoc(String.valueOf(row.getCell(8).getNumericCellValue()));
+                thiSinh.setDiemDoc(row.getCell(7).toString());
             }catch (Exception e){
                 thiSinh.setDiemDoc("N/A");
             }
             try {
-                thiSinh.setTongDiem(String.valueOf(row.getCell(9).getNumericCellValue()));
+                thiSinh.setTongDiem(row.getCell(8).toString());
             }catch (Exception e){
                 thiSinh.setTongDiem("N/A");
             }
             try {
-                thiSinh.setPhanLoai(String.valueOf(row.getCell(10).getNumericCellValue()));
+                thiSinh.setPhanLoai(row.getCell(10).toString());
             }catch (Exception e){
                 thiSinh.setPhanLoai("N/A");
             }

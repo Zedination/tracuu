@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class ThiSinh {
     private String maSinhVien;
-    private String soBaoDanh;
+    private String toeic;
     private String hoTen;
     private String ngaySinh;
     private String maDeNghe;

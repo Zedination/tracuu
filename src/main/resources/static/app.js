@@ -1,6 +1,6 @@
 function showData(res){
     $('#ma-sinh-vien').text(res.maSinhVien);
-    $('#so-bao-danh').text(res.soBaoDanh);
+    $('#toeic').text(res.toeic);
     $('#ho-ten').text(res.hoTen);
     $('#ngay-sinh').text(res.ngaySinh);
     $('#ma-de-nghe').text(res.maDeNghe);
@@ -16,10 +16,12 @@ $("#main-container > div:nth-child(1) > form > div > div.form-group.col-12.col-s
     if(inputNeedValid.val()){
         inputNeedValid.removeClass("is-invalid");
         $("form > div > div.form-group.col-12.col-sm-6.col-md-5 > div").hide();
+        $('#loading-icon').show();
         $.ajax({
             type: 'post',
             url: '/find?q='+inputNeedValid.val(),
             success: (result)=>{
+                $('#loading-icon').hide();
                 if(result){
                     showData(result);
                     $('#main-container > div:nth-child(2)').show();
@@ -28,7 +30,7 @@ $("#main-container > div:nth-child(1) > form > div > div.form-group.col-12.col-s
                     alert("Không tìm thấy sinh viên có mã sinh viên bạn vừa nhập");
                 }
             }
-        })
+        });
     }else{
         inputNeedValid.addClass("is-invalid");
         $("form > div > div.form-group.col-12.col-sm-6.col-md-5 > div").show();
