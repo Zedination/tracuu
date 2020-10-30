@@ -19,7 +19,7 @@ public class InitData {
 
     @PostConstruct
     public void initData() throws IOException {
-        String pathFile = "src/main/resources/k61.xlsx";
+        String pathFile = "src/main/resources/k61Update.xlsx";
         InputStream inputStream = new FileInputStream(new File(pathFile));
         Workbook workbook = new XSSFWorkbook(inputStream);
         Sheet sheet = workbook.getSheetAt(0);
