@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--<link rel="stylesheet" th:href="@{style.css}">-->
+    <style>
+        .form-control:invalid{
+            background-image: none!important;
+        }
+    </style>
+    <link href="https://ketquats.utc.edu.vn/css/chunk-vendors.cd0ff871.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ketquats.utc.edu.vn/css/cap-nhat-viettelpay-63732682449.db8d738d.css">
+    <link rel="stylesheet" type="text/css" href="https://ketquats.utc.edu.vn/css/tra-cuu-63732682449.7354ccd4.css">
+    <title th:utext="${title}"></title>
+</head>
+<body>
+<div id="page-container" class="main-content-boxed">
+    <header id="page-header">
+        <div class="content-header flex-wrap">
+            <div class="d-flex align-items-center"><a href="/" class="logo font-w600 text-dual mt-3 mb-3"><img
+                    src="https://ketquats.utc.edu.vn/logo.png" alt="University of Transport and Communications"></a>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="text-center m-3"><span class="font-w700 font-size-h5 text-uppercase">Tra cứu kết quả phân loại tiếng anh sinh viên <br> hệ đại học chính quy khóa 61</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main id="main-container">
+        <div class="content">
+            <form action="/login" method="post">
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="p-3 bg-gray-light text-gray-darker mb-4">Mời bạn nhập đầy đủ thông tin bên dưới để đăng nhập
+                        </div>
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-5"><label
+                            for="username"><span>Tên đăng nhập</span><span
+                            class="text-danger ml-1">*</span></label><input name="username"
+                            id="username"
+                            placeholder="Tên đăng nhập..." autocomplete="off" type="text"
+                            aria-invalid="false" aria-required="true"
+                            class="form-control untouched pristine required" required autofocus>
+                        <div style="display: none;" class="invalid-feedback">Hãy nhập tên đăng nhập</div>
+                    </div>
+                    <div class="col-md-7 col-sm-6"></div>
+                    <div class="form-group col-12 col-sm-6 col-md-5"><label
+                            for="password"><span>Mật khẩu</span><span
+                            class="text-danger ml-1">*</span></label><input name="password"
+                                                                            id="password"
+                                                                            placeholder="Mật khẩu..." autocomplete="off" type="password"
+                                                                            aria-invalid="false" aria-required="true"
+                                                                            class="form-control untouched pristine required" required>
+                        <div th:utext="${error}" style="color: red; margin-top: 20px;"></div>
+                    </div>
+                    <div class="col-md-7 col-sm-6">
+
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-2 mb-md-0">
+                        <button class="btn btn-alt-primary d-block"><i class="fas fa-sign-in-alt"></i> <span
+                                class="btn-search-text">Đăng nhập</span></button>
+                    </div>
+                </div>
+            </form>
+            <div class="text-center mt-3 mb-3" id = "loading-icon" style="display: none;">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <div class="content" style="display: none;"><!---->
+
+            <!----></div>
+    </main>
+    <footer id="page-footer" class="bg-white">
+        <div class="content py-3">
+            <div class="row font-size-sm">
+                <!--<div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left"><a href="https://utc.edu.vn"-->
+                <!--target="_blank"-->
+                <!--class="font-w600 text-uppercase">Trường-->
+                <!--đại học Giao thông vận tải</a> © 2020-->
+                <!--</div>-->
+                <div style="text-align: center; font-weight: 600;" class="col-md-12 text-center">Copyright © <a class="font-w600"
+                                                                                                                href="http://fit.utc.edu.vn/"
+                                                                                                                target="_blank">FIT UTC 2020</a></div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

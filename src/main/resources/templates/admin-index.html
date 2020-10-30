@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--<link rel="stylesheet" th:href="@{style.css}">-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.5/css/responsive.dataTables.min.css">
+    <style>
+        .form-control:invalid{
+            background-image: none!important;
+        }
+    </style>
+    <link href="https://ketquats.utc.edu.vn/css/chunk-vendors.cd0ff871.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ketquats.utc.edu.vn/css/cap-nhat-viettelpay-63732682449.db8d738d.css">
+    <link rel="stylesheet" type="text/css" href="https://ketquats.utc.edu.vn/css/tra-cuu-63732682449.7354ccd4.css">
+    <title th:utext="${title}"></title>
+</head>
+<body>
+<div id="page-container" class="main-content-boxed">
+    <header id="page-header">
+        <div class="content-header flex-wrap">
+            <div class="d-flex align-items-center"><a href="/" class="logo font-w600 text-dual mt-3 mb-3"><img
+                    src="https://ketquats.utc.edu.vn/logo.png" alt="University of Transport and Communications"></a>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="text-center m-3"><span class="font-w700 font-size-h5 text-uppercase">Tra cứu kết quả phân loại tiếng anh sinh viên <br> hệ đại học chính quy khóa 61</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main id="main-container">
+        <div class="content">
+            <div class="text-center mt-3 mb-3" id = "loading-icon" style="display: none;">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <div class="content"><!---->
+            <a style="float: right" class="btn btn-primary" href="/admin/logout"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+            <br>
+            <h3 style="text-align: center;">Danh sách điểm thi</h3>
+            <table id="example" class="display responsive nowrap" style="width:100%">
+                <thead>
+                <tr>
+                    <th>Mã sinh viên</th>
+                    <th>Họ tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Mã đề nghe</th>
+                    <th>Điểm nghe</th>
+                    <th>Mã đề đọc</th>
+                    <th>Điểm đọc</th>
+                    <th>Tổng điểm</th>
+                    <th>TOEIC</th>
+                    <th>Phân loại</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Mã sinh viên</th>
+                    <th>Họ tên</th>
+                    <th>Ngày sinh</th>
+                    <th>Mã đề nghe</th>
+                    <th>Điểm nghe</th>
+                    <th>Mã đề đọc</th>
+                    <th>Điểm đọc</th>
+                    <th>Tổng điểm</th>
+                    <th>TOEIC</th>
+                    <th>Phân loại</th>
+                </tr>
+                </tfoot>
+            </table>
+            <h3 style="text-align: center;" class="mt-4">Update dữ liệu (File Excel)</h3>
+            <p style="text-align: center;" class="mb-4">Chú ý: vui lòng upload file Excel có dữ liệu được tổ chức như file <a
+                    href="/admin/file-mau">Excel này</a> để đảm bảo chương trình hoạt động chính xác</p>
+            <form enctype="multipart/form-data" id="formUpload">
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="p-3 bg-gray-light text-gray-darker mb-4">Nhập file Excel vào mục dưới bên dưới để thay thế dữ liệu mới
+                        </div>
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-5"><label
+                            for="fileExcel"><span>File Excel</span><span
+                            class="text-danger ml-1">*</span></label><input
+                            id="fileExcel" type="file" name="file"
+                            aria-invalid="true" aria-required="true"
+                            class="form-control untouched pristine required" required accept=".xlsx">
+                    </div>
+                    <div class="form-group col-12 col-sm-6 col-md-2 mb-md-0"><label
+                            class="d-none d-md-block text-transparent">ACTIONS</label>
+                        <button id = "btnUpload" class="btn btn-alt-primary d-block"><i class="fas fa-file-excel"></i> <span
+                                class="btn-search-text">Upload file Excel</span></button>
+                    </div>
+                </div>
+            </form>
+            <!----></div>
+    </main>
+    <footer id="page-footer" class="bg-white">
+        <div class="content py-3">
+            <div class="row font-size-sm">
+                <!--<div class="col-sm-6 order-sm-1 py-1 text-center text-sm-left"><a href="https://utc.edu.vn"-->
+                <!--target="_blank"-->
+                <!--class="font-w600 text-uppercase">Trường-->
+                <!--đại học Giao thông vận tải</a> © 2020-->
+                <!--</div>-->
+                <div style="text-align: center; font-weight: 600;" class="col-md-12 text-center">Copyright © <a class="font-w600"
+                                                                                                                target="_blank">FIT UTC 2020</a></div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+<script>
+    function fileValidation(filePath) {
+        var allowedExtensions = /(\.xlsx)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    $(()=>{
+        let table = $('#example').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.21/i18n/Vietnamese.json"
+            },"ajax": "data",
+            'processing': true
+        });
+        $('#btnUpload').click((e)=>{
+            e.preventDefault();
+            let checkFile = document.getElementById("fileExcel").value;
+            if(checkFile!==""){
+                if(fileValidation(checkFile)){
+                    let a = confirm("Bạn có muốn thay thế dữ liệu cũ bằng file này không?");
+                    if(a){
+                        let form = document.getElementById("formUpload");
+                        let data = new FormData(form);
+                        $.ajax({
+                            type: 'post',
+                            url: "update",
+                            enctype: 'multipart/form-data',
+                            data: data,
+                            processData: false,
+                            contentType: false,
+                            cache: false,
+                            timeout: 1000000,
+                            success: ()=>{
+                                alert("Update dữ liệu thành công!");
+                                table.ajax.reload();
+                            }, error: ()=>{
+                                alert("Có lỗi xảy ra, vui lòng thử lại sau");
+                            }
+                        })
+                    }
+                }else{
+                    alert("Vui lòng upload file Excel 2007!");
+                }
+            }
+        });
+    });
+
+</script>
+</body>
+</html>
