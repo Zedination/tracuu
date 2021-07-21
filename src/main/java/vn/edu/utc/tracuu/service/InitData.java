@@ -9,10 +9,7 @@ import vn.edu.utc.tracuu.cachevariable.StaticData;
 import vn.edu.utc.tracuu.dataclass.ThiSinh;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 @Service
 public class InitData {
